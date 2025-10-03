@@ -1,0 +1,1 @@
+![A logo showing a cartoon whale on a laptop, text underneath reads WHALES](./Logo.svg)
