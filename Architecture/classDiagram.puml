@@ -1,0 +1,45 @@
+@startuml
+
+'Screen
+abstract class Screen
+abstract class Button
+
+Screen <|-- InstructionScreen
+Screen <|-- Timer
+Screen <|-- PauseScreen
+Screen <|-- HomeScreen
+Screen <|-- HomeScreen
+HomeScreen <|-- CharacterCustomisationMenu
+
+Button <|-- MusicButton
+Button <|-- SoundButton
+
+'Player
+Player <|-- CharacterElement
+Player <|-- Energy
+Player <|-- Inventory
+
+'Room
+Room <|-- Door
+
+'Event
+interface Item
+interface Obstacle
+abstract class Event
+
+Event <|-- Item
+Event <|-- Obstacle
+Obstacle <|-- Map
+Obstacle <|-- Dean
+Obstacle <|-- Duck
+Item <|-- Keys
+Item <|-- Drink
+Item <|-- Statue
+
+'Hidden Event
+abstract class HiddenEvent
+
+HiddenEvent <|-- LongBoiSpirit
+HiddenEvent <|-- PowerCut
+
+@enduml
