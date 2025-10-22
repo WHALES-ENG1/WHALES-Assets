@@ -1,0 +1,45 @@
+name: Render PlantUML Diagrams
+
+# Only run on changes to .puml files (commits/PRs)
+on:
+  push:
+    paths:
+      - '**.puml'
+  pull_request:
+    paths:
+      - '**.puml'
+
+jobs:
+  render:
+    runs-on: ubuntu-latest # Renderer uses a Ubuntu Linux VM
+    permissions:
+      contents: write  # allows committing results
+      
+    steps:
+      # Checkout repo contents
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      # Install PlantUML and dependencies onto the VM
+      - name: Install PlantUML
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y plantuml graphviz
+
+      # Render UML diagrams as SVG
+      - name: Render all .puml files
+        run: |
+          mkdir -p rendered
+          # Find all .puml files, then run the render command on each of them, 
+          # placing the rendered files into the same directory as the original file
+          find . -name '*.puml' -exec plantuml -tsvg -o ./ {} \;
+
+      # Commit the rendered diagrams back to the repo
+      - name: Commit rendered SVGs
+        run: |
+          git config user.name "GitHub Action"
+          git config user.email "action@github.com"
+
+          git add .
+          git diff --cached --quiet || git commit -m "Auto-render PlantUML diagrams"
+          git push

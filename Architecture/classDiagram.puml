@@ -1,0 +1,144 @@
+@startuml
+
+'Misc
+
+'Is this a screen?
+class Timer {
+    timeRemaining : Float
+    isRunning : boolean
+    timerLabel : Label
+    updateTimer()
+}
+
+'What is this
+class CharacterElement
+
+'Where does this go?
+class Inventory
+
+'Screen
+abstract class Screen {
+    game : Game
+    render()
+}
+
+class InstructionScreen {
+    instructionText : String
+    backButton : Button
+    showInstructions()
+}
+
+class PauseScreen {
+    resumeButton : Button
+    quitButton : Button
+    showMenu()
+}
+
+class HomeScreen {
+    startButton : Button
+    musicButton : Button
+    soundButton : Button
+    wardrobeButton : Button
+    openScreen(Screen nextScreen)
+}
+
+class CharacterCustomisationScreen {
+   availableSkins : Array<Texture>
+   selectedSkinIndex : int
+   confirmButton : Button
+   applySkin()
+}
+
+Screen <|-- InstructionScreen
+Button <|-- InstructionScreen
+
+Button <|-- PauseScreen
+Screen <|-- PauseScreen
+
+Button <|-- HomeScreen
+Screen <|-- HomeScreen
+
+Button <|-- CharacterCustomisationScreen
+Screen <|-- CharacterCustomisationScreen
+
+'Button
+abstract class Button {
+    bounds : Rectangle
+    isPressed : Boolean
+    onClick()
+}
+
+'Player
+class Player {
+    position : Vector2
+    move()
+}
+
+class Energy {
+    currentEnergy : float
+    maxEnergy : float
+}
+
+Player <|-- Energy
+
+
+'Room
+class Room {
+    background : Texture
+}
+
+Room <|-- Door
+
+'Event
+abstract class Event {
+    position : Vector2
+    triggered : boolean
+    id : string
+}
+
+interface Item {
+    itemId : String
+    icon : TextureRegion
+    pickupSound : Sound
+}
+
+interface Obstacle {
+    collisionBox : Rectangle
+}
+
+class Keys {
+    isUsed : boolean
+}
+
+class Drink {
+    consumed : boolean
+}
+
+Event <|-- Item
+Event <|-- Obstacle
+Obstacle <|-- Map
+Obstacle <|-- Dean
+Obstacle <|-- Duck
+Item <|-- Keys
+Item <|-- Drink
+Item <|-- Statue
+
+'Hidden Event
+abstract class HiddenEvent {
+    isRevealed : boolean
+    activate()
+}
+
+class LongBoiSpirit {
+    appearanceTime : float
+}
+
+class PowerCut {
+    duration : float
+    powerRestored : boolean
+}
+
+HiddenEvent <|-- LongBoiSpirit
+HiddenEvent <|-- PowerCut
+
+@enduml
