@@ -1,0 +1,128 @@
+@startuml
+
+'will update to look neater - starting vague diagram'
+'separate diagram for main menu? i.e. settings leaderboard'
+
+'participants: player, room, engine, goose'
+'sequence diagram - mainly decisions'
+
+actor Player #Red
+participant Engine
+participant Room
+participant Enemy
+participant Item
+participant Obstacle
+participant Timer
+
+
+'start of the game'
+
+Player -> Engine: Start game
+Engine -> Timer: Start 5 Min timer
+Timer -> Player: Show timer in corner
+
+
+'timer:'
+
+alt Timer != 0
+    Engine -> Timer: Reduce timer by 1 second
+    Timer -> Engine: Update time
+    Engine -> Player: Show updated time
+
+else Time = 0
+
+    'make more detailed - i.e if the player has won or not:'
+    'also add colour changes for important times, e.g. 1 min left'
+
+    Timer -> Engine: Update time to 0
+    Engine -> Player: Alert player that time is over
+    Player -> Engine: Can no longer make any more inputs
+    Engine -> Player: End game
+    Engine -> Player: Show player end screen, e.g. time/score etc.
+    Engine -> Player: Return Player to Main Menu
+
+end
+
+
+'goose (enemy):'
+
+Engine -> Enemy: Random Geese spawn
+
+alt Player close to Enemy
+    Enemy -> Engine: Detect enemy and check there is energy to lose
+    Engine -> Player: Lose energy
+    Engine -> Player: Decrease speed
+
+else Player has duck food
+    Player -> Engine: Duck food in Player's hotbar
+    Engine -> Enemy: Ignore player
+    Enemy -> Player: Enemy doesn't impact player
+
+
+end
+
+
+'player movement:'
+'add input controls individually here'
+
+Player -> Engine: Player chooses direction
+Engine -> Obstacle: Checks if there's an obstacle
+
+alt Obstacle in front of player
+    Obstacle -> Engine: Player can't pass through
+    Engine -> Player: Player stops
+
+
+
+else Else
+    Engine -> Player: Player continues as normal
+
+end
+
+
+
+Engine -> Room: Check room is unlocked
+
+alt Room is unlocked
+    Engine -> Player: Enter room
+    Player -> Room: Player has key
+
+else Room is locked
+    Engine -> Player: Cannot enter, need key
+    Engine -> Player: Hint where key is
+
+end
+
+
+'items:'
+
+Engine -> Item: Randomly spawn keys
+Engine -> Item: Randomly spawn food/drink
+Engine -> Item: Randomly spawn LongBoi
+Item -> Engine: Place items on the floor/map
+Engine -> Player: Make items interactable/visible
+
+Player -> Engine: Interact with Item
+
+alt Item is key/LongBoi
+    Engine -> Player: Player sees Item in their hotbar
+
+else Item is food/drink
+    Engine -> Item: Player consumes the item
+    Item -> Engine: Remove item from the map
+    Engine -> Player: Energy bar increases
+
+end
+
+
+'player wins the game (longboi is returned and make the bus):'
+
+'if statement for if the player has longboi. If not, can't escape'
+'make link with timer, check it != 0'
+
+
+
+'looping:'
+
+
+@enduml
