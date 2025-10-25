@@ -4,10 +4,13 @@
 
 'Is this a screen?
 class Timer {
-    timeRemaining : Float
-    isRunning : boolean
-    timerLabel : Label
-    updateTimer()
+    -timeLeft : float
+    -isRunning : boolean
+    +update(delta)
+    +render(SpriteBatch)
+    +pause()
+    +resume()
+    +dispose()
 }
 
 'What is this
@@ -70,8 +73,16 @@ abstract class Button {
 
 'Player
 class Player {
-    position : Vector2
-    move()
+    -position : Vector2
+    -speed: float
+    +setSpeed()
+    +getSpeed()
+    +getPosition()
+    +setPosition()
+    +move()
+    +handle_input()
+    +render()
+    +dispose()
 }
 
 class Energy {
