@@ -1,8 +1,5 @@
 @startuml
 
-'init commit
-
-'will update to look neater - starting vague diagram'
 'separate diagram for main menu? i.e. settings leaderboard'
 
 'participants: player, room, engine, goose'
@@ -22,6 +19,14 @@ participant Timer
 Player -> Engine: Start game
 Engine -> Timer: Start 5 Min timer
 Timer -> Player: Show timer in corner
+
+
+'creation of the maze
+
+Engine -> Enemy: Spawn enemies at random locations
+Engine -> Item: Spawn keys, food/drink, LongBoi
+Engine -> Player: Set initial position and energy to full
+Engine -> Player: Display energy bar
 
 
 'timer:'
@@ -45,27 +50,39 @@ else Time = 0
 
 end
 
+alt Time <= 60 second
+    Engine -> Player: Change timer colour to red
+    Engine -> Player: Alert player with sound effect
+
+end
+
 
 'goose (enemy):'
 
-Engine -> Enemy: Random Geese spawn
-
 alt Player close to Enemy
-    Enemy -> Engine: Detect enemy and check there is energy to lose
+    Enemy -> Engine: Detect player location
     Engine -> Player: Lose energy
     Engine -> Player: Decrease speed
 
 else Player has duck food
     Player -> Engine: Duck food in Player's hotbar
     Engine -> Enemy: Ignore player
-    Enemy -> Player: Enemy doesn't impact player
+    Enemy -> Player: No impact
 
+end
+
+
+'energy system'
+
+Engine -> Player: Gradually reduce energy
+
+alt energy <= threshold:
+    Engine -> Player: Player movement speed reduced
 
 end
 
 
 'player movement:'
-'add input controls individually here'
 
 Player -> Engine: Player chooses direction
 Engine -> Obstacle: Checks if there's an obstacle
@@ -74,20 +91,18 @@ alt Obstacle in front of player
     Obstacle -> Engine: Player can't pass through
     Engine -> Player: Player stops
 
-
-
-else Else
+else No Obstacle
     Engine -> Player: Player continues as normal
 
 end
 
 
+'rooms/doors
 
 Engine -> Room: Check room is unlocked
 
 alt Room is unlocked
     Engine -> Player: Enter room
-    Player -> Room: Player has key
 
 else Room is locked
     Engine -> Player: Cannot enter, need key
@@ -98,9 +113,6 @@ end
 
 'items:'
 
-Engine -> Item: Randomly spawn keys
-Engine -> Item: Randomly spawn food/drink
-Engine -> Item: Randomly spawn LongBoi
 Item -> Engine: Place items on the floor/map
 Engine -> Player: Make items interactable/visible
 
@@ -119,12 +131,12 @@ end
 
 'player wins the game (longboi is returned and make the bus):'
 
-'if statement for if the player has longboi. If not, can't escape'
-'make link with timer, check it != 0'
+alt Player has LongBoi and Time != 0
+    Player -> Engine: Reach exit (bus)
+    Engine -> Player: Display that the player has won and show score
 
-
-
-'looping:'
+else Player doesn't have LongBoi or time = 0
+    Engine -> Player: Game over
 
 
 @enduml
