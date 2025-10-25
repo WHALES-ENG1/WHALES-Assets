@@ -1,4 +1,4 @@
-@startuml
+@startuml structuralDiagram
 
 'separate diagram for main menu? i.e. settings leaderboard'
 
