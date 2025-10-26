@@ -18,7 +18,7 @@ participant Timer
 
 Player -> Engine: Start game
 Engine -> Timer: Start 5 Min timer
-Timer -> Player: Show timer in corner
+Timer -> Engine: Render timer
 
 
 'creation of the maze
