@@ -1,8 +1,5 @@
 @startuml classDiagram
 
-'Misc
-
-'Is this a screen?
 class Timer {
     -timeLeft : float
     -isRunning : boolean
@@ -12,6 +9,8 @@ class Timer {
     +resume()
     +dispose()
 }
+
+Screen <|-- Timer
 
 'Screen
 abstract class Screen {
@@ -127,9 +126,27 @@ Player *-- CharacterElement
 'Room
 class Room {
     background : Texture
+    -left: Door | null
+    -right: Door | null
+    -up: Door | null
+    -down: Door | null
+    +getLeftDoor()
+    +getRightDoor()
+    +getUpDoor()
+    +getDownDoor()
+    +render()
+}
+
+Room o-- Obstacle
+
+class Door {
+    +currentRoom: Room
+    +targetRoom: Room
 }
 
 Room *-- Door
+Room --* Door
+Obstacle <|-- Door
 
 'Event
 abstract class Event {
