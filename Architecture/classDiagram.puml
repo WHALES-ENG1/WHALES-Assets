@@ -71,10 +71,11 @@ abstract class Button {
     onClick()
 }
 
-'Player
 class Player {
     -position : Vector2
     -speed: float
+    -energyObj: Energy
+    +getEnergyObj()
     +setSpeed()
     +getSpeed()
     +getPosition()
@@ -86,11 +87,16 @@ class Player {
 }
 
 class Energy {
-    currentEnergy : float
-    maxEnergy : float
+    -currentEnergy : float
+    -maxEnergy : float
+    -regenerationRate: float
+    -lowThreshold: float
+    +getCurrentEnergy()
+    +addEnergy()
+    +subtractEnergy()
 }
 
-Player <|-- Energy
+Player *-- Energy
 
 
 'Room
