@@ -155,6 +155,8 @@ abstract class HiddenEvent {
     activate()
 }
 
+Event <-- HiddenEvent
+
 class LongBoiSpirit {
     appearanceTime : float
 }
