@@ -1,19 +1,8 @@
 @startuml structuralDiagram
 
-'separate diagram for main menu? i.e. settings leaderboard'
-
-'participants: player, room, engine, goose'
-'sequence diagram - mainly decisions'
+'Diagram for main menu? i.e. settings leaderboard'
 
 actor Player #Red
-participant Engine
-participant Room
-participant Enemy
-participant Item
-participant Obstacle
-participant Timer
-participant Energy
-
 
 'start of the game'
 
@@ -28,23 +17,6 @@ Engine -> Enemy: Initialise enemies
 Engine -> Item: Initialise game obstacles
 Engine -> Player: Initialise full energy
 Player -> Energy: Create energy bar
-
-'timer:'
-
-loop Timer != 0
-    Timer -> Timer: Reduce timer by 1 second
-end
-
-alt Timer = 0
-    Timer -> Engine: Display game over screen
-    Engine -> Engine: Stop processing inputs
-    Engine -> Player: Return to Main Menu
-end
-
-alt Time <= 60 second
-    Timer -> Timer: Change timer colour to red
-    Engine -> Engine: Alert player with sound effect
-end
 
 'items:'
 
