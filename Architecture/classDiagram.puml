@@ -49,20 +49,15 @@ class CharacterCustomisationScreen {
 }
 
 Screen <|-- InstructionScreen
-Button o-- InstructionScreen
-
-Button o-- PauseScreen
 Screen <|-- PauseScreen
-
-Button o-- HomeScreen
 Screen <|-- HomeScreen
-
-Button o-- CharacterCustomisationScreen
 Screen <|-- CharacterCustomisationScreen
+Screen *-- Button
+
 Player <-- CharacterCustomisationScreen
 
 'Button
-abstract class Button {
+class Button {
     bounds : Rectangle
     isPressed : Boolean
     onClick()
