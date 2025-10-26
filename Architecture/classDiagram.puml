@@ -50,15 +50,15 @@ class CharacterCustomisationScreen {
 }
 
 Screen <|-- InstructionScreen
-Button <|-- InstructionScreen
+Button o-- InstructionScreen
 
-Button <|-- PauseScreen
+Button o-- PauseScreen
 Screen <|-- PauseScreen
 
-Button <|-- HomeScreen
+Button o-- HomeScreen
 Screen <|-- HomeScreen
 
-Button <|-- CharacterCustomisationScreen
+Button o-- CharacterCustomisationScreen
 Screen <|-- CharacterCustomisationScreen
 Player <-- CharacterCustomisationScreen
 
