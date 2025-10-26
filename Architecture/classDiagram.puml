@@ -16,7 +16,6 @@ class Timer {
 'What is this
 class CharacterElement
 
-'Where does this go?
 class Inventory
 
 'Screen
@@ -104,7 +103,7 @@ class Room {
     background : Texture
 }
 
-Room <|-- Door
+Room *-- Door
 
 'Event
 abstract class Event {
@@ -133,12 +132,12 @@ class Drink {
 
 Event <|-- Item
 Event <|-- Obstacle
-Obstacle <|-- Map
-Obstacle <|-- Dean
-Obstacle <|-- Duck
-Item <|-- Keys
-Item <|-- Drink
-Item <|-- Statue
+Obstacle <|.. Map
+Obstacle <|.. Dean
+Obstacle <|.. Duck
+Item <|.. Key
+Item <|.. Drink
+Item <|.. Statue
 
 'Hidden Event
 abstract class HiddenEvent {
