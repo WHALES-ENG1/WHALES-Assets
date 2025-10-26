@@ -13,9 +13,6 @@ class Timer {
     +dispose()
 }
 
-'What is this
-class CharacterElement
-
 'Screen
 abstract class Screen {
     game : Game
@@ -73,6 +70,8 @@ class Player {
     -speed: float
     -energy: Energy
     -inventory: Inventory
+    head: CharacterElement
+    body: CharacterElement
     +getInventory()
     +getEnergy()
     +setSpeed()
@@ -106,6 +105,19 @@ class Inventory {
 
 Inventory *.. Item
 Player o-- Inventory
+
+class CharacterElement {
+    +sprite
+    -type: CharacterElementType
+}
+
+enum CharacterElementType {
+    HEAD
+    BODY
+}
+
+CharacterElement --> CharacterElementType
+Player *-- CharacterElement
 
 
 'Room
@@ -155,7 +167,7 @@ abstract class HiddenEvent {
     activate()
 }
 
-Event <-- HiddenEvent
+Event <|-- HiddenEvent
 
 class LongBoiSpirit {
     appearanceTime : float
