@@ -30,29 +30,19 @@ Engine -> Energy: Render energy bar
 
 'timer:'
 
-alt Timer != 0
-    Engine -> Timer: Reduce timer by 1 second
-    Timer -> Engine: Update time
-    Engine -> Player: Show updated time
+loop Timer != 0
+    Timer -> Timer: Reduce timer by 1 second
+end
 
-else Time = 0
-
-    'make more detailed - i.e if the player has won or not:'
-    'also add colour changes for important times, e.g. 1 min left'
-
-    Timer -> Engine: Update time to 0
-    Engine -> Player: Alert player that time is over
-    Player -> Engine: Can no longer make any more inputs
-    Engine -> Player: End game
-    Engine -> Player: Show player end screen, e.g. time/score etc.
+alt Timer = 0
+    Timer -> Engine: Display game over screen
+    Engine -> Engine: Stop processing inputs
     Engine -> Player: Return Player to Main Menu
-
 end
 
 alt Time <= 60 second
-    Engine -> Player: Change timer colour to red
-    Engine -> Player: Alert player with sound effect
-
+    Timer -> Timer: Change timer colour to red
+    Engine -> Engine: Alert player with sound effect
 end
 
 
