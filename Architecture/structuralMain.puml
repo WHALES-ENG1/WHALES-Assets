@@ -61,7 +61,8 @@ end
 'player wins the game (longboi is returned and make the bus):'
 
 alt Player has LongBoi and Time != 0
-    Player -> Engine: Reach exit (bus)
+    Player -> Player: Reach exit (bus)
+    Player -> Enemy: Distract Dean Enemy with Long Boi Statue in inventory
     Engine -> Player: Display that the player has won and show score
 else Player doesn't have LongBoi or time = 0
     Engine -> Player: Game over
