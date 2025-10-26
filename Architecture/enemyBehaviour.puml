@@ -1,0 +1,15 @@
+@startuml EnemyBehaviour
+
+actor Player #Red
+
+loop Roaming
+    Enemy -> Enemy: Move to new location in room
+    Enemy -> Player: Check if player is nearby
+    alt Player close to Enemy & Doesn't have food
+        Enemy -> Enemy: Move towards player
+        alt Enemy touches player
+            Enemy -> Player: Reduce energy
+            Enemy -> Enemy: Move away from player
+        end
+    end
+end

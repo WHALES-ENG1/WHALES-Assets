@@ -12,6 +12,7 @@ participant Enemy
 participant Item
 participant Obstacle
 participant Timer
+participant Energy
 
 
 'start of the game'
@@ -26,7 +27,7 @@ Timer -> Engine: Render timer
 Engine -> Enemy: Initialise enemies
 Engine -> Item: Initialise game obstacles
 Engine -> Player: Initialise full energy
-Engine -> Energy: Render energy bar
+Player -> Energy: Create energy bar
 
 'timer:'
 
@@ -43,21 +44,6 @@ end
 alt Time <= 60 second
     Timer -> Timer: Change timer colour to red
     Engine -> Engine: Alert player with sound effect
-end
-
-
-'goose (enemy):'
-
-alt Player close to Enemy
-    Enemy -> Engine: Detect player location
-    Engine -> Player: Lose energy
-    Engine -> Player: Decrease speed
-
-else Player has duck food
-    Player -> Engine: Duck food in Player's hotbar
-    Engine -> Enemy: Ignore player
-    Enemy -> Player: No impact
-
 end
 
 
