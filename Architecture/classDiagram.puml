@@ -40,10 +40,13 @@ class HomeScreen {
 }
 
 class CharacterCustomisationScreen {
-   availableSkins : Array<Texture>
-   selectedSkinIndex : int
-   confirmButton : Button
-   applySkin()
+   +availableHeadSkins: Array<Texture>
+   +availableBodySkins: Array<Texture>
+   -player: Player
+   -selectedHeadIndex: int
+   -selectedBodyIndex: int
+   -confirmButton: Button
+   -applySkin()
 }
 
 Screen <|-- InstructionScreen
@@ -57,6 +60,7 @@ Screen <|-- HomeScreen
 
 Button <|-- CharacterCustomisationScreen
 Screen <|-- CharacterCustomisationScreen
+Player <-- CharacterCustomisationScreen
 
 'Button
 abstract class Button {
