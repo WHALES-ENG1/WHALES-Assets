@@ -16,8 +16,6 @@ class Timer {
 'What is this
 class CharacterElement
 
-class Inventory
-
 'Screen
 abstract class Screen {
     game : Game
@@ -73,8 +71,10 @@ abstract class Button {
 class Player {
     -position : Vector2
     -speed: float
-    -energyObj: Energy
-    +getEnergyObj()
+    -energy: Energy
+    -inventory: Inventory
+    +getInventory()
+    +getEnergy()
     +setSpeed()
     +getSpeed()
     +getPosition()
@@ -96,6 +96,16 @@ class Energy {
 }
 
 Player *-- Energy
+
+class Inventory {
+    - items: Item[]
+    + getItems()
+    + addItem(Item)
+    + removeItem(Item)
+}
+
+Inventory *.. Item
+Player o-- Inventory
 
 
 'Room
@@ -135,7 +145,7 @@ Event <|-- Obstacle
 Obstacle <|.. Map
 Obstacle <|.. Dean
 Obstacle <|.. Duck
-Item <|.. Key
+Item <|.. Keys
 Item <|.. Drink
 Item <|.. Statue
 
