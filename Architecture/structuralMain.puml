@@ -48,18 +48,15 @@ end
 
 'items:'
 
-Item -> Engine: Place items on the floor/map
-Engine -> Player: Make items interactable/visible
-Player -> Engine: Interact with Item
-
-alt Item is key/LongBoi
-    Engine -> Player: Player sees Item in their hotbar
-else Item is food/drink
+Player -> Item: Interact with Item
+alt Item is non-consumable
+    Item -> Player: Item moves to inventory
+    Item -> Engine: Remove item from the screen
+else Item is consumable
     Engine -> Item: Player consumes the item
-    Item -> Engine: Remove item from the map
+    Item -> Engine: Remove item from the screen
     Engine -> Player: Energy bar increases
 end
-
 
 'player wins the game (longboi is returned and make the bus):'
 
