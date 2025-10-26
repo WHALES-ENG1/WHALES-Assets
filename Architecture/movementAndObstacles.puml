@@ -1,0 +1,26 @@
+@startuml MovementAndObstacles
+
+actor Player #Red
+
+Player -> Player: Chooses direction
+Player -> Player: Checks if there's an obstacle
+
+alt Obstacle in front of player
+    alt Obstacle is a door
+        alt Door is locked
+            alt Player has key
+                Player -> Obstacle: Unlock door
+            else Player does not have key
+                Player -> Player: Player doesn't move
+                Engine -> Player: Hint where key is
+            end
+        else Door is unlocked
+            Obstacle -> Player: Move to new room
+        end
+    else Obstacle is not a door
+    Player -> Player: Player doesn't move
+    end
+
+else No Obstacle
+    Player -> Player: Player moves as normal
+end

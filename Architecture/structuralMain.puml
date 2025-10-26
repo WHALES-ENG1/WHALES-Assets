@@ -38,7 +38,7 @@ end
 alt Timer = 0
     Timer -> Engine: Display game over screen
     Engine -> Engine: Stop processing inputs
-    Engine -> Player: Return Player to Main Menu
+    Engine -> Player: Return to Main Menu
 end
 
 alt Time <= 60 second
@@ -46,49 +46,18 @@ alt Time <= 60 second
     Engine -> Engine: Alert player with sound effect
 end
 
-
-'player movement:'
-
-Player -> Engine: Player chooses direction
-Engine -> Obstacle: Checks if there's an obstacle
-
-alt Obstacle in front of player
-    Obstacle -> Engine: Player can't pass through
-    Engine -> Player: Player doesn't move
-else No Obstacle
-    Engine -> Player: Player moves in direction chosen
-end
-
-
-'rooms/doors
-
-Engine -> Room: Check room is unlocked
-
-alt Room is unlocked
-    Engine -> Player: Enter room
-
-else Room is locked
-    Engine -> Player: Cannot enter, need key
-    Engine -> Player: Hint where key is
-
-end
-
-
 'items:'
 
 Item -> Engine: Place items on the floor/map
 Engine -> Player: Make items interactable/visible
-
 Player -> Engine: Interact with Item
 
 alt Item is key/LongBoi
     Engine -> Player: Player sees Item in their hotbar
-
 else Item is food/drink
     Engine -> Item: Player consumes the item
     Item -> Engine: Remove item from the map
     Engine -> Player: Energy bar increases
-
 end
 
 
