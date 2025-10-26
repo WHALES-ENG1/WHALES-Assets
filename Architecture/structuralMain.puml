@@ -23,7 +23,7 @@ Timer -> Engine: Render timer
 
 'creation of the maze
 
-Engine -> Enemy: Spawn enemies at random locations
+Engine -> Enemy: Spawn enemies
 Engine -> Item: Spawn keys, food/drink, LongBoi
 Engine -> Player: Set initial position and energy to full
 Engine -> Player: Display energy bar
