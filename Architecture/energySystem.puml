@@ -1,0 +1,20 @@
+@startuml EnergySystem
+
+actor Player #Red
+
+Player -> Energy: Holding sprint key
+Energy -> Energy: Reduce energy
+Energy -> Player: Increase movement speed
+
+alt energy = 0
+    Energy -> Player: Reduce movement speed
+    Energy -> Energy: Set bar colour to red
+end
+
+loop regenerateEnergy
+    Energy -> Energy: Regenerate Energy
+    alt energy is full
+        Energy -> Energy: Set bar colour to green
+        Energy -> Player: Reset speed to normal
+    end
+end

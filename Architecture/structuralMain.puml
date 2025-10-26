@@ -47,16 +47,6 @@ alt Time <= 60 second
 end
 
 
-'energy system'
-
-Engine -> Player: Gradually reduce energy
-
-alt energy <= threshold:
-    Engine -> Player: Player movement speed reduced
-
-end
-
-
 'player movement:'
 
 Player -> Engine: Player chooses direction
