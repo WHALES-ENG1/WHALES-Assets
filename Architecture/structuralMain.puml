@@ -54,11 +54,9 @@ Engine -> Obstacle: Checks if there's an obstacle
 
 alt Obstacle in front of player
     Obstacle -> Engine: Player can't pass through
-    Engine -> Player: Player stops
-
+    Engine -> Player: Player doesn't move
 else No Obstacle
-    Engine -> Player: Player continues as normal
-
+    Engine -> Player: Player moves in direction chosen
 end
 
 
