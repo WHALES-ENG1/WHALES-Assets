@@ -158,6 +158,7 @@ interface Item {
 
 interface Obstacle {
     collisionBox : Rectangle
+    solid: boolean
 }
 
 class Keys {
@@ -171,8 +172,7 @@ class Drink {
 Event <|-- Item
 Event <|-- Obstacle
 Obstacle <|.. Map
-Obstacle <|.. Dean
-Obstacle <|.. Duck
+Obstacle <|.. Enemy
 Item <|.. Keys
 Item <|.. Drink
 Item <|.. Statue
