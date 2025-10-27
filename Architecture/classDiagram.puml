@@ -182,7 +182,8 @@ class Drink {
 Event <|-- Item
 Event <|-- Obstacle
 Obstacle <|.. Map
-Obstacle <|.. Enemy
+Obstacle <|.. Dean
+Obstacle <|.. Duck
 Item <|.. Keys
 Item <|.. Drink
 Item <|.. Statue
