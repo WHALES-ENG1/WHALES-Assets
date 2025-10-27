@@ -48,10 +48,19 @@ class CharacterCustomisationScreen {
    -applySkin()
 }
 
+class MapScreen {
+    -showMapScreen()
+    +closeMapScreen
+    -traverseMap()
+}
+
+Map o-- MapScreen
+
 Screen <|-- InstructionScreen
 Screen <|-- PauseScreen
 Screen <|-- HomeScreen
 Screen <|-- CharacterCustomisationScreen
+Screen <|-- MapScreen
 Screen *-- Button
 
 Player <-- CharacterCustomisationScreen
@@ -141,7 +150,7 @@ class Door {
 
 Room *-- Door
 Room --* Door
-Obstacle <|-- Door
+Obstacle <|.. Door
 
 'Event
 abstract class Event {
@@ -158,6 +167,7 @@ interface Item {
 
 interface Obstacle {
     collisionBox : Rectangle
+    sprite: Sprite
     solid: boolean
 }
 
@@ -176,6 +186,10 @@ Obstacle <|.. Enemy
 Item <|.. Keys
 Item <|.. Drink
 Item <|.. Statue
+
+class Map {
+    showMapScreen()
+}
 
 'Hidden Event
 abstract class HiddenEvent {
