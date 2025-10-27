@@ -153,17 +153,25 @@ Room --* Door
 Obstacle <|.. Door
 
 'Event
-abstract class Event {
+interface Event {
     position : Vector2
     triggered : boolean
     id : string
 }
 
-interface Item {
+class Item {
     itemId : String
     icon : TextureRegion
     pickupSound : Sound
+    type: ItemType
 }
+
+enum ItemType {
+    CONSUMABLE
+    PICKUP
+}
+
+Item --> ItemType
 
 interface Obstacle {
     collisionBox : Rectangle
@@ -171,22 +179,10 @@ interface Obstacle {
     solid: boolean
 }
 
-class Keys {
-    isUsed : boolean
-}
-
-class Drink {
-    consumed : boolean
-}
-
-Event <|-- Item
+Obstacle <|.. Item
 Event <|-- Obstacle
 Obstacle <|.. Map
-Obstacle <|.. Dean
-Obstacle <|.. Duck
-Item <|.. Keys
-Item <|.. Drink
-Item <|.. Statue
+Obstacle <|.. Enemy
 
 class Map {
     showMapScreen()
