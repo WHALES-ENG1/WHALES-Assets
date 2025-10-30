@@ -24,3 +24,5 @@ alt Obstacle in front of player
 else No Obstacle
     Player -> Player: Player moves as normal
 end
+
+@enduml

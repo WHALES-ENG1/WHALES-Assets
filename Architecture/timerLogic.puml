@@ -16,3 +16,5 @@ alt Time <= 60 second
     Timer -> Timer: Change timer colour to red
     Engine -> Engine: Alert player with sound effect
 end
+
+@enduml

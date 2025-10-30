@@ -18,3 +18,5 @@ loop regenerateEnergy
         Energy -> Player: Reset speed to normal
     end
 end
+
+@enduml
