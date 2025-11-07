@@ -1,24 +1,60 @@
 @startuml structuralDiagram
 
-'Diagram for main menu? i.e. settings leaderboard'
+'participants:'
 
 actor Player #Red
+participant Engine
+participant Timer
+participant Enemy
+participant Item
+participant Energy
 
 'start of the game'
 
+== Game Start ==
+
 Player -> Engine: Start game
 Engine -> Timer: Start 5 Min timer
-Timer -> Engine: Render timer
-
-
-'creation of the maze
-
 Engine -> Enemy: Initialise enemies
 Engine -> Item: Initialise game obstacles
 Engine -> Player: Initialise full energy
 Player -> Energy: Create energy bar
 
+'timer management/warning'
+
+== Time Management ==
+
+Timer -> Engine: Update countdown
+alt Time <= 60 seconds
+    Engine -> Player: Change timer colour to red
+    Engine -> Player: Alert player with sound effect
+end
+
+'player close to enemy:'
+
+== Player/Enemy Interactions ==
+
+alt Player close to enemy
+    Enemy -> Engine: Detect player location
+    Engine -> Player: Reduce energy
+else Player has duck food
+    Player -> Engine: Use duck food
+    Engine -> Enemy: Ignore player
+end
+
+'energy system':
+
+== Energy System ==
+
+Engine -> Player: Gradually reduce energy
+
+alt energy <= threshold
+    Engine -> Player: Player movement speed reduced
+end
+
 'items:'
+
+== Item Interaction ==
 
 Player -> Item: Interact with Item
 alt Item is non-consumable
@@ -31,6 +67,8 @@ else Item is consumable
 end
 
 'player wins the game (longboi is returned and make the bus):'
+
+== Win/Lose Condition ==
 
 alt Player has LongBoi and Time != 0
     Player -> Player: Reach exit (bus)
