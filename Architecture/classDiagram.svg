@@ -48,7 +48,7 @@ reverse link Obstacle to Map--><path d="M2055.18,453.33 C2056.65,482.12 2058.32,
 reverse link Obstacle to Enemy--><path d="M2097.12,449.13 C2122.37,481.66 2152.44,520.39 2171.12,544.47 " fill="none" id="Obstacle&lt;-Enemy" style="stroke: #A80036; stroke-width: 1.0; stroke-dasharray: 7.0,7.0;"/><polygon fill="none" points="2091.55,453.37,2084.81,433.28,2102.61,444.78,2091.55,453.37" style="stroke: #A80036; stroke-width: 1.0;"/><!--MD5=[4f88a4454fb067329595778faaf8c445]
 reverse link Event to HiddenEvent--><path d="M2232.19,195.4 C2257.67,244.34 2292.86,311.91 2314.21,352.92 " fill="none" id="Event&lt;-HiddenEvent" style="stroke: #A80036; stroke-width: 1.0;"/><polygon fill="none" points="2225.97,198.62,2222.95,177.64,2238.39,192.15,2225.97,198.62" style="stroke: #A80036; stroke-width: 1.0;"/><!--MD5=[27fec3b7759e550014e1f4ddd2d6abb4]
 reverse link HiddenEvent to LongBoiSpirit--><path d="M2333,447.32 C2333,477.39 2333,513.18 2333,537.84 " fill="none" id="HiddenEvent&lt;-LongBoiSpirit" style="stroke: #A80036; stroke-width: 1.0;"/><polygon fill="none" points="2326,447.14,2333,427.14,2340,447.14,2326,447.14" style="stroke: #A80036; stroke-width: 1.0;"/><!--MD5=[594d5557d2d2a5044416a107da90a2dc]
-reverse link HiddenEvent to PowerCut--><path d="M2385.49,441.08 C2415.66,469.87 2452.87,505.36 2480.17,531.41 " fill="none" id="HiddenEvent&lt;-PowerCut" style="stroke: #A80036; stroke-width: 1.0;"/><polygon fill="none" points="2380.52,446.01,2370.88,427.14,2390.19,435.88,2380.52,446.01" style="stroke: #A80036; stroke-width: 1.0;"/><!--MD5=[43a3a8072fe4252faff9fb6ca472e6db]
+reverse link HiddenEvent to PowerCut--><path d="M2385.49,441.08 C2415.66,469.87 2452.87,505.36 2480.17,531.41 " fill="none" id="HiddenEvent&lt;-PowerCut" style="stroke: #A80036; stroke-width: 1.0;"/><polygon fill="none" points="2380.52,446.01,2370.88,427.14,2390.19,435.88,2380.52,446.01" style="stroke: #A80036; stroke-width: 1.0;"/><!--MD5=[43bfa12b6e0961f0a868b0163c8cc55c]
 @startuml classDiagram
 
 class Timer {
@@ -260,7 +260,7 @@ PlantUML version 1.2020.02(Sun Mar 01 10:22:07 UTC 2020)
 (GPL source distribution)
 Java Runtime: OpenJDK Runtime Environment
 JVM: OpenJDK 64-Bit Server VM
-Java Version: 17.0.16+8
+Java Version: 17.0.17+10
 Operating System: Linux
 Default Encoding: UTF-8
 Language: en
